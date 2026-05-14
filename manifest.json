@@ -1,8 +1,8 @@
 {
-  "name": "Wei Fu — Portfolio",
-  "short_name": "Wei Fu",
-  "start_url": "/ME/",
-  "scope": "/ME/",
+  "name": "WeiProduct",
+  "short_name": "WeiProduct",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
