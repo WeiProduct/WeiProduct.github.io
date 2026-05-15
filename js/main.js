@@ -84,10 +84,10 @@ function displayProjects(repos) {
             ${languages}
             <div class="project-links">
                 <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i> View on GitHub
+                    View on GitHub
                 </a>
                 ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-external-link-alt"></i> Live Demo
+                    Live Demo
                 </a>` : ''}
             </div>
         `;

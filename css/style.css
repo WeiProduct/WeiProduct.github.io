@@ -210,6 +210,24 @@ section {
     transform: translateY(-2px);
 }
 
+.btn-symbol {
+    display: inline-flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.72rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.btn-secondary .btn-symbol {
+    background: #eef2ff;
+    color: var(--blue);
+}
+
 .btn-primary {
     border: 1px solid var(--ink);
     background: var(--ink) !important;
@@ -271,9 +289,17 @@ section {
     font-weight: 750;
 }
 
-.showcase-header i {
+.store-mark {
+    display: inline-flex;
+    min-width: 40px;
+    min-height: 28px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: #eff6ff;
     color: var(--blue);
-    font-size: 1.25rem;
+    font-size: 0.76rem;
+    font-weight: 900;
 }
 
 .icon-cloud {
@@ -490,9 +516,18 @@ section {
     background: #ffffff;
 }
 
-.focus-grid i {
+.focus-mark {
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: #eff6ff;
     color: var(--blue);
-    font-size: 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 0;
 }
 
 .studio {
@@ -553,9 +588,18 @@ section {
     padding-top: 10px;
 }
 
-.contact-method i {
+.contact-mark {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background: #eff6ff;
     color: var(--blue);
-    width: 22px;
+    font-size: 0.76rem;
+    font-weight: 900;
     text-align: center;
 }
 

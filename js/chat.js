@@ -8,6 +8,17 @@ const chatInput = document.getElementById('chatInput');
 const voiceToggleBtn = document.getElementById('voiceToggle');
 const fullscreenToggleBtn = document.getElementById('fullscreenToggle');
 
+function getControlMark(button, fallbackText) {
+    let mark = button.querySelector('.control-mark');
+    if (!mark) {
+        mark = document.createElement('span');
+        mark.className = 'control-mark';
+        mark.textContent = fallbackText;
+        button.prepend(mark);
+    }
+    return mark;
+}
+
 // Wei's information for the AI context with enhanced personality and achievements
 const weiInfo = `
 Wei Fu is an INTJ personality type - analytical, strategic, and efficiency-driven. Recent graduate from UMass Amherst (Class of 2025) with dual Bachelor of Science degrees in Computer Science and Managerial Economics, earning Dean's List honors for 5 semesters.
@@ -68,11 +79,10 @@ chatMinimize.addEventListener('click', () => {
 voiceToggleBtn.addEventListener('click', () => {
     voiceEnabled = !voiceEnabled;
     voiceToggleBtn.classList.toggle('active', voiceEnabled);
-    
-    // Update icon based on state
-    const icon = voiceToggleBtn.querySelector('i');
+
+    const icon = getControlMark(voiceToggleBtn, voiceEnabled ? 'On' : 'Off');
     if (voiceEnabled) {
-        icon.className = 'fas fa-volume-up';
+        icon.textContent = 'On';
         // Announce voice enabled with a professional greeting
         if (window.speechSynthesis) {
             // Wait a moment for voice to be ready
@@ -81,24 +91,24 @@ voiceToggleBtn.addEventListener('click', () => {
             }, 100);
         }
     } else {
-        icon.className = 'fas fa-volume-mute';
         // Cancel any ongoing speech
         if (window.speechSynthesis) {
             window.speechSynthesis.cancel();
         }
+        icon.textContent = 'Off';
     }
 });
 
 // Toggle fullscreen mode
 fullscreenToggleBtn.addEventListener('click', () => {
     chatWidget.classList.toggle('fullscreen');
-    const icon = fullscreenToggleBtn.querySelector('i');
-    
+    const icon = getControlMark(fullscreenToggleBtn, chatWidget.classList.contains('fullscreen') ? 'Min' : 'Max');
+
     if (chatWidget.classList.contains('fullscreen')) {
-        icon.className = 'fas fa-compress';
+        icon.textContent = 'Min';
         fullscreenToggleBtn.title = 'Exit fullscreen';
     } else {
-        icon.className = 'fas fa-expand';
+        icon.textContent = 'Max';
         fullscreenToggleBtn.title = 'Toggle fullscreen';
     }
 });
@@ -283,8 +293,8 @@ window.testVoice = function(message = "Hello, I'm Wei Fu. Let me tell you about 
     if (!voiceEnabled) {
         voiceEnabled = true;
         voiceToggleBtn.classList.add('active');
-        const icon = voiceToggleBtn.querySelector('i');
-        icon.className = 'fas fa-volume-up';
+        const icon = getControlMark(voiceToggleBtn, 'On');
+        icon.textContent = 'On';
     }
     speakMessage(message);
 };
@@ -323,7 +333,7 @@ chatForm.addEventListener('submit', async (e) => {
     
     const typingDiv = document.createElement('div');
     typingDiv.className = 'chat-message bot typing';
-    typingDiv.innerHTML = '<span class="typing-indicator"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i></span>';
+    typingDiv.innerHTML = '<span class="typing-indicator"><span></span><span></span><span></span></span>';
     typingContainer.appendChild(typingDiv);
     
     chatMessages.appendChild(typingContainer);
@@ -588,18 +598,34 @@ chatStyles.textContent = `
         padding: 15px;
     }
     
-    .typing-indicator i {
+    .control-mark {
+        display: inline-flex;
+        min-width: 30px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .typing-indicator span {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: currentColor;
         font-size: 8px;
         margin: 0 2px;
         opacity: 0.4;
         animation: typing 1.4s infinite;
     }
-    
-    .typing-indicator i:nth-child(2) {
+
+    .typing-indicator span:nth-child(2) {
         animation-delay: 0.2s;
     }
-    
-    .typing-indicator i:nth-child(3) {
+
+    .typing-indicator span:nth-child(3) {
         animation-delay: 0.4s;
     }
     
